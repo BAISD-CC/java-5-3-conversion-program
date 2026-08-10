@@ -1,0 +1,186 @@
+{
+  "schema": "iteryx/java-grader/v1",
+
+  "assignmentName": "Ch. 5 Challenge 3",
+
+  "project": {
+    "workingDirectory": ".",
+    "mainFile": "src/ConversionProgram.java",
+    "mainClass": "ConversionProgram",
+    "outputDirectory": ".iteryx/out",
+    "compileCommand": [
+      "javac",
+      "-d",
+      ".iteryx/out",
+      "src/ConversionProgram.java"
+    ],
+    "runCommand": [
+      "java",
+      "-cp",
+      ".iteryx/out",
+      "ConversionProgram"
+    ]
+  },
+
+  "settings": {
+    "compileTimeoutSeconds": 30,
+    "runTimeoutSeconds": 10,
+    "defaultCaseSensitive": false,
+    "defaultNormalizeWhitespace": true
+  },
+
+  "helpTopics": {
+    "scannerInput": {
+      "title": "Reading Input With Scanner",
+      "whereToLook": [
+        "Check that you create a Scanner tied to System.in near the top of main.",
+        "Check that the distance is read as an int and stored in a variable before it is used.",
+        "Check that the menu choice is read with the same Scanner each time through the loop."
+      ]
+    },
+    "loopsAndMethods": {
+      "title": "The Menu Loop and Conversion Methods",
+      "whereToLook": [
+        "Check that a while loop keeps showing the menu until the user enters 4.",
+        "Check that calcKilometers, calcInches, and calcFeet each accept the distance and return a double.",
+        "Check that the menu method only displays the four options and takes no arguments.",
+        "Check that selecting an option calls the matching calc method rather than repeating the formula inline."
+      ]
+    },
+    "outputFormatting": {
+      "title": "Matching the Required Output",
+      "whereToLook": [
+        "Compare your printed text character-for-character against the Requirements checklist in the README.",
+        "Check that you print the value stored in your distance variable, not a typed-in number.",
+        "Check that the invalid-selection message is shown before the menu loops back for another choice."
+      ]
+    }
+  },
+
+  "sourceChecks": [
+    {
+      "name": "Uses Scanner for input",
+      "type": "regex",
+      "pattern": "\\bScanner\\b",
+      "points": 1,
+      "message": "This challenge requires reading the distance and menu choice with a Scanner. See the 'Reading Input With Scanner' help topic."
+    },
+    {
+      "name": "Uses a while loop for the menu",
+      "type": "regex",
+      "pattern": "\\bwhile\\s*\\(",
+      "points": 1,
+      "message": "The menu should keep repeating using a while loop until the user quits. See the 'Menu Loop and Conversion Methods' help topic."
+    },
+    {
+      "name": "Defines and calls a menu method",
+      "type": "regex",
+      "pattern": "\\bmenu\\s*\\(",
+      "points": 1,
+      "message": "You need a method named menu that displays the four options, and it needs to be called from your loop. See the 'Menu Loop and Conversion Methods' help topic."
+    },
+    {
+      "name": "Defines the three conversion methods",
+      "type": "regex",
+      "pattern": "(?=[\\s\\S]*\\bcalcKilometers\\b)(?=[\\s\\S]*\\bcalcInches\\b)(?=[\\s\\S]*\\bcalcFeet\\b)[\\s\\S]*",
+      "points": 1,
+      "message": "You need calcKilometers, calcInches, and calcFeet methods, each returning a double. See the 'Menu Loop and Conversion Methods' help topic."
+    },
+    {
+      "name": "Ends the program when the user quits",
+      "type": "contains",
+      "pattern": "System.exit(",
+      "points": 1,
+      "message": "When the user selects 4, the program should end (for example, with System.exit) after printing the goodbye message."
+    }
+  ],
+
+  "tests": [
+    {
+      "name": "Prompts for the distance in meters",
+      "input": "500\n4\n",
+      "expectedOutput": "Enter a distance in meters:",
+      "comparison": "included",
+      "points": 1,
+      "message": "Your program should ask the user to enter a distance in meters using the exact prompt from the README before doing anything else."
+    },
+    {
+      "name": "Displays the full conversion menu",
+      "input": "500\n4\n",
+      "expectedOutput": "1. Convert to kilometers\n2. Convert to inches\n3. Convert to feet\n4. Quit the program",
+      "comparison": "included",
+      "points": 2,
+      "message": "Your menu method should display all four options in order, each on its own line, exactly as shown in the README."
+    },
+    {
+      "name": "Converts 500 meters to kilometers",
+      "input": "500\n1\n4\n",
+      "expectedOutput": "500 meters is 0.5 kilometers.",
+      "comparison": "included",
+      "points": 3,
+      "message": "When the user selects option 1, use calcKilometers to convert the entered distance and display the result in the required format."
+    },
+    {
+      "name": "Converts 500 meters to inches",
+      "input": "500\n2\n4\n",
+      "expectedOutput": "500 meters is 19685.0 inches.",
+      "comparison": "included",
+      "points": 3,
+      "message": "When the user selects option 2, use calcInches to convert the entered distance and display the result in the required format."
+    },
+    {
+      "name": "Converts 500 meters to feet",
+      "input": "500\n3\n4\n",
+      "expectedOutput": "500 meters is 1640.5 feet.",
+      "comparison": "included",
+      "points": 3,
+      "message": "When the user selects option 3, use calcFeet to convert the entered distance and display the result in the required format."
+    },
+    {
+      "name": "Kilometer conversion uses the entered value",
+      "input": "250\n1\n4\n",
+      "expectedOutput": "250 meters is 0.25 kilometers.",
+      "comparison": "included",
+      "points": 2,
+      "message": "Your program should recalculate the kilometer conversion based on whatever distance the user enters, not just the example value.",
+      "possibleErrors": [
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "0.5 kilometers",
+          "message": "Your output still shows the answer for 500 meters even though 250 was entered. Make sure calcKilometers is using the value read from the Scanner."
+        }
+      ]
+    },
+    {
+      "name": "Feet conversion uses the entered value",
+      "input": "1000\n3\n4\n",
+      "expectedOutput": "1000 meters is 3281.0 feet.",
+      "comparison": "included",
+      "points": 2,
+      "message": "Your program should recalculate the feet conversion based on whatever distance the user enters, not just the example value.",
+      "possibleErrors": [
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "1640.5 feet",
+          "message": "Your output still shows the answer for 500 meters even though 1000 was entered. Make sure calcFeet is using the value read from the Scanner."
+        }
+      ]
+    },
+    {
+      "name": "Rejects an invalid menu selection",
+      "input": "500\n9\n4\n",
+      "expectedOutput": "Invalid selection. Enter your choice:",
+      "comparison": "included",
+      "points": 2,
+      "message": "When the user enters a choice that isn't 1-4, display the exact invalid-selection message and let the user try again."
+    },
+    {
+      "name": "Loop allows multiple conversions before quitting",
+      "input": "500\n1\n2\n3\n4\n",
+      "expectedOutput": "Thank you. Have a nice day!",
+      "comparison": "included",
+      "points": 2,
+      "message": "Your loop should keep showing the menu after each conversion so the user can make several selections before finally quitting with option 4."
+    }
+  ]
+}

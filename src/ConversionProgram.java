@@ -27,7 +27,7 @@ public class ConversionProgram {
     public static void main(String[] args) {
         // Variables and scanner
 
-        // Get a distance from the user.
+        // Get a distance from the user (store it in an int).
 
         // Display the menu and process the user's selection until 4 is selected.
             // Display the menu.
@@ -36,13 +36,13 @@ public class ConversionProgram {
 
             // Validate the user's selection.
 
-                // If the selection is invaldi, ask them again.
+                // If the selection is invalid, ask them again.
 
             // Process the user's selection. A switch is probably easiest.
                 // What to do if 1 is selected
                 // What to do if 2 is selected
                 // What to do if 3 is selected
-                // What to do if 4 is selected
-            
+                // What to do if 4 is selected (print the goodbye message, then end the program)
+
     }
 }
