@@ -1,8 +1,6 @@
 {
   "schema": "iteryx/java-grader/v1",
-
   "assignmentName": "Ch. 5 Challenge 3",
-
   "project": {
     "workingDirectory": ".",
     "mainFile": "src/ConversionProgram.java",
@@ -21,14 +19,12 @@
       "ConversionProgram"
     ]
   },
-
   "settings": {
     "compileTimeoutSeconds": 30,
     "runTimeoutSeconds": 10,
     "defaultCaseSensitive": false,
     "defaultNormalizeWhitespace": true
   },
-
   "helpTopics": {
     "scannerInput": {
       "title": "Reading Input With Scanner",
@@ -56,12 +52,11 @@
       ]
     }
   },
-
   "sourceChecks": [
     {
       "name": "Uses Scanner for input",
       "type": "regex",
-      "pattern": "\\bScanner\\b",
+      "pattern": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
       "points": 1,
       "message": "This challenge requires reading the distance and menu choice with a Scanner. See the 'Reading Input With Scanner' help topic."
     },
@@ -82,7 +77,7 @@
     {
       "name": "Defines the three conversion methods",
       "type": "regex",
-      "pattern": "(?=[\\s\\S]*\\bcalcKilometers\\b)(?=[\\s\\S]*\\bcalcInches\\b)(?=[\\s\\S]*\\bcalcFeet\\b)[\\s\\S]*",
+      "pattern": "(?=[\\s\\S]*\\bdouble\\s+calcKilometers\\s*\\()(?=[\\s\\S]*\\bdouble\\s+calcInches\\s*\\()(?=[\\s\\S]*\\bdouble\\s+calcFeet\\s*\\()[\\s\\S]*",
       "points": 1,
       "message": "You need calcKilometers, calcInches, and calcFeet methods, each returning a double. See the 'Menu Loop and Conversion Methods' help topic."
     },
@@ -94,7 +89,6 @@
       "message": "When the user selects 4, the program should end (for example, with System.exit) after printing the goodbye message."
     }
   ],
-
   "tests": [
     {
       "name": "Prompts for the distance in meters",
