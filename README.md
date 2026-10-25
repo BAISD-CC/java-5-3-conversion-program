@@ -1,80 +1,195 @@
-We've been working on a project with the Europeans to do some mining on the moon. There's just one problem: they use the Metric system. We need a way to quickly convert between their measurements and our measurements.
+# Ch. 5 Challenge 3: Conversion Program
 
-The program should ask the user to enter a distance in meters (store it in an `int` variable). Once the user has entered the distance, the program should display the following menu of options for conversion:
->   1. Convert to kilometers
->   2. Convert to inches
->   3. Convert to feet
->   4. Quit the program
+## Mission Briefing
 
-The program should then convert the distance to kilometers, inches, or feet depending on the user's selection. Here are the specific requirements.
+We're mining on the Moon with a European team, and there's one problem: they measure in the metric system. Your program asks for a distance in meters, then shows a menu for converting it to kilometers, inches, or feet. It keeps showing the menu until the user quits. Each conversion lives in its own small method, so `main` only reads input, shows the menu, and calls the right method.
 
-- Write a `double`-returning method named `calcKilometers`, which accepts the number of meters as an argument. The method should return the argument converted to kilometers using the following formula:
-  `kilometers = meters * 0.001`
+## What You'll Practice
 
-- Write a `double`-returning method named `calcInches`, which accepts the number of meters as an argument. The method should return the argument converted to inches using the following formula:
-  `inches = meters * 39.37`
+- Breaking a program into small methods with one job each (Day 3 notes, FD1)
+- Value-returning methods that take an `int` and send back a `double` (Day 2 notes, R2)
+- A `void` method with no parameters (Day 1 notes, M1)
+- A `while` loop that repeats a menu, and a validation loop (Chapter 4)
 
-- Write a `double`-returning method named `calcFeet`, which accepts the number of meters as an argument. The method should return the argument converted to feet using the following formula:
-  `feet = meters * 3.281`
+## Starter Code
 
-- Write a `void`-returning method named `menu` that displays the menu of selections shown above. This method should not accept any arguments.
+Edit `src/ConversionProgram.java`. The class is `ConversionProgram`. Do not rename the file or the class.
 
-- Use a `while` loop so the program keeps displaying the menu and processing selections until the user enters `4` to quit.
+Comments above `main` describe the four methods to write: `menu`, `calcKilometers`, `calcInches`, and `calcFeet`. Write each method under its comment. The comments in `main` list its steps in order.
 
-- If the user enters anything other than `1`, `2`, `3`, or `4`, the program should display the error message below and ask for their choice again:
-> Invalid selection. Enter your choice: 
+## Inputs
 
-- When the user selects `4`, the program should print the message below and then end the program (for example, using `System.exit`).
-> Thank you. Have a nice day!
+| Order | What it is | Java type |
+|---|---|---|
+| 1 | The distance in meters | `int` |
+| 2, 3, ... | A menu choice, read again after each conversion | `int` |
 
-## Example session
+## Rules
 
-Here is an example session with the program, using console input. The user's input is shown as `[value]`.
+### 1. The conversions
 
-> Enter a distance in meters: `[500]`
-> 1. Convert to kilometers
-> 2. Convert to inches
-> 3. Convert to feet
-> 4. Quit the program
-> 
-> Enter your choice: `[1]`
-> 500 meters is 0.5 kilometers.
-> 
-> 1. Convert to kilometers
-> 2. Convert to inches
-> 3. Convert to feet
-> 4. Quit the program
-> 
-> Enter your choice: `[3]`
-> 500 meters is 1640.5 feet.
-> 
-> 1. Convert to kilometers
-> 2. Convert to inches
-> 3. Convert to feet
-> 4. Quit the program
-> 
-> Enter your choice: `[4]`
-> Thank you. Have a nice day!
+Each conversion is its own method. It accepts the meters as an `int` argument and returns the result as a `double`.
 
-## Requirements checklist
+| Method | Formula |
+|---|---|
+| `calcKilometers` | `kilometers = meters * 0.001` |
+| `calcInches` | `inches = meters * 39.37` |
+| `calcFeet` | `feet = meters * 3.281` |
 
-Your program will be checked for the following. Wording matters for the messages below — match it exactly.
+### 2. The menu
 
-- Prompt for the distance: `Enter a distance in meters: `
-- Prompt for a menu choice: `Enter your choice: `
-- Invalid choice message: `Invalid selection. Enter your choice: `
-- Quit message: `Thank you. Have a nice day!`
-- Kilometers output: `[meters] meters is [kilometers] kilometers.`
-- Inches output: `[meters] meters is [inches] inches.`
-- Feet output: `[meters] meters is [feet] feet.`
-- Menu options, in order:
-  - `1. Convert to kilometers`
-  - `2. Convert to inches`
-  - `3. Convert to feet`
-  - `4. Quit the program`
+`menu` displays the four options and nothing else. It takes no arguments and returns nothing (`void`).
 
-You are expected to use:
-- A `Scanner` to read the distance and the menu choice.
-- A `while` loop to keep the menu running until the user quits.
-- The three conversion methods (`calcKilometers`, `calcInches`, `calcFeet`), each accepting the distance and returning a `double`.
-- A `menu` method that displays the four menu options and takes no arguments.
+### 3. Repeat until the user quits
+
+After each conversion, show the menu again and ask for another choice.
+
+- A choice other than `1`, `2`, `3`, or `4`: print the invalid-selection message and read the choice again, as many times as needed.
+- Choice `4`: print the goodbye message, then end the program with `System.exit(0);`.
+
+## What to Use
+
+These are suggestions. Any approach that produces the correct output earns full credit, as long as it passes the source checks (see How It's Checked).
+
+- The headers: `public static double calcKilometers(int meters)`, and the same shape for `calcInches` and `calcFeet`; `public static void menu()`.
+- A conversion line can use the return value directly: `System.out.println(meters + " meters is " + calcFeet(meters) + " feet.");` (R2 pattern).
+- A `while (choice != 4)` loop around the menu, and inside it a validation loop: `while (choice < 1 || choice > 4)` (Chapter 4 Day 1 notes, E7).
+- A `switch` on the choice (Chapter 3), or an `if`/`else if` chain.
+
+## Exact Output
+
+Spelling, capitalization, and punctuation must match. The user types each value on the same line as its prompt.
+
+The distance prompt:
+
+```
+Enter a distance in meters: 
+```
+
+The menu, in this order:
+
+```
+1. Convert to kilometers
+2. Convert to inches
+3. Convert to feet
+4. Quit the program
+```
+
+The choice prompt, and the message for an invalid choice:
+
+```
+Enter your choice: 
+Invalid selection. Enter your choice: 
+```
+
+The three conversion results:
+
+```
+[meters] meters is [kilometers] kilometers.
+[meters] meters is [inches] inches.
+[meters] meters is [feet] feet.
+```
+
+The goodbye message:
+
+```
+Thank you. Have a nice day!
+```
+
+The results print as Java `double` values, so 500 meters is `0.5` kilometers and `19685.0` inches.
+
+## Sample Runs
+
+```text
+Enter a distance in meters: 500
+1. Convert to kilometers
+2. Convert to inches
+3. Convert to feet
+4. Quit the program
+
+Enter your choice: 1
+500 meters is 0.5 kilometers.
+
+1. Convert to kilometers
+2. Convert to inches
+3. Convert to feet
+4. Quit the program
+
+Enter your choice: 3
+500 meters is 1640.5 feet.
+
+1. Convert to kilometers
+2. Convert to inches
+3. Convert to feet
+4. Quit the program
+
+Enter your choice: 4
+Thank you. Have a nice day!
+```
+
+An invalid choice:
+
+```text
+Enter a distance in meters: 500
+1. Convert to kilometers
+2. Convert to inches
+3. Convert to feet
+4. Quit the program
+
+Enter your choice: 9
+Invalid selection. Enter your choice: 2
+500 meters is 19685.0 inches.
+
+1. Convert to kilometers
+2. Convert to inches
+3. Convert to feet
+4. Quit the program
+
+Enter your choice: 4
+Thank you. Have a nice day!
+```
+
+The blank lines around the menu are optional.
+
+## Test Your Program
+
+Run each test before you submit. The autograder uses these and other values.
+
+| Meters | Choices | Line to look for |
+|---|---|---|
+| `500` | `1`, then `4` | `500 meters is 0.5 kilometers.` |
+| `500` | `2`, then `4` | `500 meters is 19685.0 inches.` |
+| `500` | `3`, then `4` | `500 meters is 1640.5 feet.` |
+| `250` | `1`, then `4` | `250 meters is 0.25 kilometers.` |
+| `1000` | `3`, then `4` | `1000 meters is 3281.0 feet.` |
+| `500` | `9`, then `4` | `Invalid selection. Enter your choice:` |
+| `500` | `1`, `2`, `3`, then `4` | `Thank you. Have a nice day!` |
+
+## How It's Checked
+
+| Check | What it looks for | Points |
+|---|---|---|
+| Distance prompt | `Enter a distance in meters:` | 1 |
+| Menu | All four options, in order | 2 |
+| Kilometers | `500 meters is 0.5 kilometers.` | 3 |
+| Inches | `500 meters is 19685.0 inches.` | 3 |
+| Feet | `500 meters is 1640.5 feet.` | 3 |
+| Kilometers, new value | `250 meters is 0.25 kilometers.` | 2 |
+| Feet, new value | `1000 meters is 3281.0 feet.` | 2 |
+| Invalid choice | The invalid-selection message after a `9` | 2 |
+| Several conversions | `1`, `2`, `3`, then `4` ends with the goodbye message | 2 |
+| Uses a `Scanner` | The source code creates a `Scanner` with `System.in` | 1 |
+| Uses a `while` loop | The source code has a `while` loop | 1 |
+| `menu` method | The source code defines and calls `menu()` | 1 |
+| Conversion methods | The source code declares `double calcKilometers(`, `double calcInches(`, and `double calcFeet(` | 1 |
+| Ends the program | The source code calls `System.exit` | 1 |
+| **Total** | | **25** |
+
+Any approach that produces the correct output earns full credit, as long as it passes the source checks. Results must come from the user's input; the tests use distances you have not seen.
+
+## Where to Look
+
+- Day 3 notes, FD1 (One task per method): one method for each step, with `main` calling them in order.
+- Day 2 notes, R2 (Using a return value): using a return value directly inside `println`.
+- Day 1 notes, M1 (Header, body, and call): a `void` method with no parameters.
+- Rule 3 above: what happens after each choice.
