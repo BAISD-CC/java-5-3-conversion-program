@@ -26,155 +26,278 @@
     "defaultNormalizeWhitespace": true
   },
   "helpTopics": {
-    "scannerInput": {
-      "title": "Reading Input With Scanner",
+    "todo1": {
+      "title": "TODO 1: getDistance",
       "whereToLook": [
-        "Check that you create a Scanner tied to System.in near the top of main.",
-        "Check that the distance is read as an int and stored in a variable before it is used.",
-        "Check that the menu choice is read with the same Scanner each time through the loop."
+        "Day 3 notes, FD1 (One task per method): getGallons is an input method. It receives the Scanner, prints a prompt, and returns what the user typed.",
+        "In the call, keyboard is a Scanner, so the parameter is a Scanner. The result is stored in meters, an int, so the method returns an int.",
+        "Use print, not println, so the user types on the same line as the prompt."
       ]
     },
-    "loopsAndMethods": {
-      "title": "The Menu Loop and Conversion Methods",
+    "todo2": {
+      "title": "TODO 2: showMenu",
       "whereToLook": [
-        "Check that a while loop keeps showing the menu until the user enters 4.",
-        "Check that calcKilometers, calcInches, and calcFeet each accept the distance and return a double.",
-        "Check that the menu method only displays the four options and takes no arguments.",
-        "Check that selecting an option calls the matching calc method rather than repeating the formula inline."
+        "The call showMenu(); stands alone as a statement, and nothing is stored, so showMenu is void.",
+        "Nothing goes inside the parentheses in the call, so the header has no parameters.",
+        "Check each menu line against the README, including the period after each number."
       ]
     },
-    "outputFormatting": {
-      "title": "Matching the Required Output",
+    "todo3": {
+      "title": "TODO 3: showResult",
       "whereToLook": [
-        "Compare your printed text character-for-character against the Requirements checklist in the README.",
-        "Check that you print the value stored in your distance variable, not a typed-in number.",
-        "Check that the invalid-selection message is shown before the menu loops back for another choice."
+        "Day 3 notes, FD1 (One task per method): displayResults is an output method. It's void and takes the values it displays.",
+        "Look at the showResult call under TODO 4. The arguments are meters (an int), kilometers (a double), and \"kilometers\" (a String). The parameters match them in the same order.",
+        "The line ends with the unit and a period: 500 meters is 0.5 kilometers."
+      ]
+    },
+    "todo4": {
+      "title": "TODO 4: calcKilometers",
+      "whereToLook": [
+        "Day 3 notes, FD1 (One task per method): gallonsToLiters is a calculation method. It takes a value and returns the result, with no printing.",
+        "The result is stored in kilometers, a double, so the method returns a double. The argument meters is an int.",
+        "Use the formula from the README: meters * 0.001."
+      ]
+    },
+    "todo5": {
+      "title": "TODO 5: calcFeet",
+      "whereToLook": [
+        "calcFeet has the same shape as calcKilometers: an int goes in, a double comes back.",
+        "Use the formula from the README: meters * 3.281."
+      ]
+    },
+    "todo6": {
+      "title": "TODO 6: calcInches",
+      "whereToLook": [
+        "Day 1 notes, M3 (A method that calls a method): checkEngines calls checkFuel, waits for it to finish, then continues.",
+        "calcInches has the same header shape as calcFeet. Inside it, call calcFeet with the meters and multiply what it sends back by 12.",
+        "Don't use 39.37. The inches should come from calcFeet."
       ]
     }
   },
   "sourceChecks": [
     {
-      "name": "Uses Scanner for input",
+      "name": "TODO 1: getDistance header",
       "type": "regex",
-      "pattern": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
-      "points": 1,
-      "message": "This challenge requires reading the distance and menu choice with a Scanner. See the 'Reading Input With Scanner' help topic."
+      "pattern": "\\bint\\s+getDistance\\s*\\(\\s*Scanner\\s+\\w+\\s*\\)",
+      "points": 2,
+      "message": "Write a method named getDistance that has one Scanner parameter and returns an int.",
+      "helpTopic": "todo1"
     },
     {
-      "name": "Uses a while loop for the menu",
+      "name": "TODO 2: showMenu header",
       "type": "regex",
-      "pattern": "\\bwhile\\s*\\(",
+      "pattern": "\\bvoid\\s+showMenu\\s*\\(\\s*\\)",
       "points": 1,
-      "message": "The menu should keep repeating using a while loop until the user quits. See the 'Menu Loop and Conversion Methods' help topic."
+      "message": "Write a void method named showMenu with no parameters.",
+      "helpTopic": "todo2"
     },
     {
-      "name": "Defines and calls a menu method",
+      "name": "TODO 3: showResult header",
       "type": "regex",
-      "pattern": "\\bmenu\\s*\\(",
-      "points": 1,
-      "message": "You need a method named menu that displays the four options, and it needs to be called from your loop. See the 'Menu Loop and Conversion Methods' help topic."
+      "pattern": "\\bvoid\\s+showResult\\s*\\(\\s*int\\s+\\w+\\s*,\\s*double\\s+\\w+\\s*,\\s*String\\s+\\w+\\s*\\)",
+      "points": 2,
+      "message": "Write a void method named showResult with three parameters, matching the call's arguments in order: an int, a double, and a String.",
+      "helpTopic": "todo3"
     },
     {
-      "name": "Defines the three conversion methods",
+      "name": "TODO 4: calcKilometers header",
       "type": "regex",
-      "pattern": "(?=[\\s\\S]*\\bdouble\\s+calcKilometers\\s*\\()(?=[\\s\\S]*\\bdouble\\s+calcInches\\s*\\()(?=[\\s\\S]*\\bdouble\\s+calcFeet\\s*\\()[\\s\\S]*",
+      "pattern": "\\bdouble\\s+calcKilometers\\s*\\(\\s*int\\s+\\w+\\s*\\)",
       "points": 1,
-      "message": "You need calcKilometers, calcInches, and calcFeet methods, each returning a double. See the 'Menu Loop and Conversion Methods' help topic."
+      "message": "Write a method named calcKilometers that has one int parameter and returns a double.",
+      "helpTopic": "todo4"
     },
     {
-      "name": "Ends the program when the user quits",
-      "type": "contains",
-      "pattern": "System.exit(",
+      "name": "TODO 5: calcFeet header",
+      "type": "regex",
+      "pattern": "\\bdouble\\s+calcFeet\\s*\\(\\s*int\\s+\\w+\\s*\\)",
       "points": 1,
-      "message": "When the user selects 4, the program should end (for example, with System.exit) after printing the goodbye message."
+      "message": "Write a method named calcFeet that has one int parameter and returns a double.",
+      "helpTopic": "todo5"
+    },
+    {
+      "name": "TODO 6: calcInches header",
+      "type": "regex",
+      "pattern": "\\bdouble\\s+calcInches\\s*\\(\\s*int\\s+\\w+\\s*\\)",
+      "points": 1,
+      "message": "Write a method named calcInches that has one int parameter and returns a double.",
+      "helpTopic": "todo6"
+    },
+    {
+      "name": "TODO 6: calcInches calls calcFeet",
+      "type": "regex",
+      "pattern": "\\bdouble\\s+calcInches\\s*\\([^)]*\\)\\s*\\{[^}]*\\bcalcFeet\\s*\\(",
+      "points": 1,
+      "message": "calcInches should call calcFeet and multiply what it sends back by 12, instead of using its own conversion number.",
+      "helpTopic": "todo6"
     }
   ],
   "tests": [
     {
-      "name": "Prompts for the distance in meters",
+      "name": "TODO 1: Distance prompt",
       "input": "500\n4\n",
       "expectedOutput": "Enter a distance in meters:",
       "comparison": "included",
-      "points": 1,
-      "message": "Your program should ask the user to enter a distance in meters using the exact prompt from the README before doing anything else."
+      "points": 2,
+      "message": "getDistance should print the distance prompt before reading the distance.",
+      "helpTopic": "todo1",
+      "possibleErrors": [
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "invalid selection",
+          "message": "Your program read the distance as a menu choice. Check that the TODO 1 call in main is uncommented, so getDistance reads the distance first."
+        },
+        {
+          "type": "expected_missing",
+          "message": "Check that getDistance prints Enter a distance in meters: exactly, and that the TODO 1 call in main is uncommented."
+        },
+        {
+          "type": "runtime_error",
+          "message": "Your program crashed while running. Read the error output below for the line number."
+        }
+      ]
     },
     {
-      "name": "Displays the full conversion menu",
+      "name": "TODO 2: Menu",
       "input": "500\n4\n",
-      "expectedOutput": "1. Convert to kilometers\n2. Convert to inches\n3. Convert to feet\n4. Quit the program",
+      "expectedOutput": "1. Convert to kilometers 2. Convert to feet 3. Convert to inches 4. Quit the program Enter your choice:",
       "comparison": "included",
       "points": 2,
-      "message": "Your menu method should display all four options in order, each on its own line, exactly as shown in the README."
+      "message": "showMenu should print the four options, in order, right before the choice prompt.",
+      "helpTopic": "todo2",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Check each menu line against the README, and that the TODO 2 call in main is uncommented."
+        },
+        {
+          "type": "runtime_error",
+          "message": "Your program crashed while running. Read the error output below for the line number."
+        }
+      ]
     },
     {
-      "name": "Converts 500 meters to kilometers",
-      "input": "500\n1\n4\n",
-      "expectedOutput": "500 meters is 0.5 kilometers.",
-      "comparison": "included",
-      "points": 3,
-      "message": "When the user selects option 1, use calcKilometers to convert the entered distance and display the result in the required format."
-    },
-    {
-      "name": "Converts 500 meters to inches",
-      "input": "500\n2\n4\n",
-      "expectedOutput": "500 meters is 19685.0 inches.",
-      "comparison": "included",
-      "points": 3,
-      "message": "When the user selects option 2, use calcInches to convert the entered distance and display the result in the required format."
-    },
-    {
-      "name": "Converts 500 meters to feet",
-      "input": "500\n3\n4\n",
-      "expectedOutput": "500 meters is 1640.5 feet.",
-      "comparison": "included",
-      "points": 3,
-      "message": "When the user selects option 3, use calcFeet to convert the entered distance and display the result in the required format."
-    },
-    {
-      "name": "Kilometer conversion uses the entered value",
+      "name": "TODO 3: showResult for 250 meters (needs TODO 4)",
       "input": "250\n1\n4\n",
       "expectedOutput": "250 meters is 0.25 kilometers.",
       "comparison": "included",
-      "points": 2,
-      "message": "Your program should recalculate the kilometer conversion based on whatever distance the user enters, not just the example value.",
+      "points": 3,
+      "message": "showResult is first called by the kilometers conversion, so this test needs TODO 3 and TODO 4. 250 meters is 0.25 kilometers.",
+      "helpTopic": "todo3",
       "possibleErrors": [
         {
           "type": "hardcoded_output_hint",
-          "badText": "0.5 kilometers",
-          "message": "Your output still shows the answer for 500 meters even though 250 was entered. Make sure calcKilometers is using the value read from the Scanner."
+          "badText": "250.0 meters",
+          "message": "The distance printed with a decimal. meters is an int in main, so showResult's first parameter should be an int too."
+        },
+        {
+          "type": "expected_missing",
+          "message": "Check that showResult prints [meters] meters is [result] [unit]. with a space before the unit and a period at the end, and that the TODO 4 lines in main are uncommented."
         }
       ]
     },
     {
-      "name": "Feet conversion uses the entered value",
-      "input": "1000\n3\n4\n",
-      "expectedOutput": "1000 meters is 3281.0 feet.",
+      "name": "TODO 4: 500 meters to kilometers",
+      "input": "500\n1\n4\n",
+      "expectedOutput": "is 0.5 kilometers",
       "comparison": "included",
       "points": 2,
-      "message": "Your program should recalculate the feet conversion based on whatever distance the user enters, not just the example value.",
+      "message": "500 meters is 0.5 kilometers.",
+      "helpTopic": "todo4",
       "possibleErrors": [
         {
           "type": "hardcoded_output_hint",
-          "badText": "1640.5 feet",
-          "message": "Your output still shows the answer for 500 meters even though 1000 was entered. Make sure calcFeet is using the value read from the Scanner."
+          "badText": "is 0.0 kilometers",
+          "message": "Your kilometers came out as 0.0. Dividing two ints drops the decimal. Use the README's formula: meters * 0.001."
+        },
+        {
+          "type": "expected_missing",
+          "message": "Check that calcKilometers returns meters * 0.001, and that the TODO 4 lines in main are uncommented."
         }
       ]
     },
     {
-      "name": "Rejects an invalid menu selection",
-      "input": "500\n9\n4\n",
-      "expectedOutput": "Invalid selection. Enter your choice:",
+      "name": "TODO 4: Hidden distance to kilometers",
+      "input": "1200\n1\n4\n",
+      "expectedOutput": "is 1.2 kilometers",
       "comparison": "included",
-      "points": 2,
-      "message": "When the user enters a choice that isn't 1-4, display the exact invalid-selection message and let the user try again."
+      "points": 1,
+      "hidden": true,
+      "message": "calcKilometers should work for any distance.",
+      "helpTopic": "todo4",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Your calcKilometers passes the visible test but not this one. Check that it uses its parameter, not a typed-in distance."
+        }
+      ]
     },
     {
-      "name": "Loop allows multiple conversions before quitting",
-      "input": "500\n1\n2\n3\n4\n",
-      "expectedOutput": "Thank you. Have a nice day!",
+      "name": "TODO 5: 500 meters to feet",
+      "input": "500\n2\n4\n",
+      "expectedOutput": "is 1640.5 feet",
       "comparison": "included",
       "points": 2,
-      "message": "Your loop should keep showing the menu after each conversion so the user can make several selections before finally quitting with option 4."
+      "message": "500 meters is 1640.5 feet.",
+      "helpTopic": "todo5",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Check that calcFeet returns meters * 3.281, and that the TODO 5 lines in main are uncommented."
+        }
+      ]
+    },
+    {
+      "name": "TODO 5: Hidden distance to feet",
+      "input": "40\n2\n4\n",
+      "expectedOutput": "is 131.24 feet",
+      "comparison": "included",
+      "points": 1,
+      "hidden": true,
+      "message": "calcFeet should work for any distance.",
+      "helpTopic": "todo5",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Your calcFeet passes the visible test but not this one. Check that it uses its parameter, not a typed-in distance."
+        }
+      ]
+    },
+    {
+      "name": "TODO 6: 500 meters to inches",
+      "input": "500\n3\n4\n",
+      "expectedOutput": "is 19686.0 inches",
+      "comparison": "included",
+      "points": 2,
+      "message": "500 meters is 1640.5 feet, and 1640.5 feet times 12 is 19686.0 inches.",
+      "helpTopic": "todo6",
+      "possibleErrors": [
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "is 19685.0 inches",
+          "message": "Your inches came from meters * 39.37. calcInches should call calcFeet and multiply its result by 12."
+        },
+        {
+          "type": "expected_missing",
+          "message": "Check that calcInches returns calcFeet's result times 12, and that the TODO 6 lines in main are uncommented. TODO 5 must be done first."
+        }
+      ]
+    },
+    {
+      "name": "TODO 6: Hidden distance to inches",
+      "input": "2000\n3\n4\n",
+      "expectedOutput": "is 78744.0 inches",
+      "comparison": "included",
+      "points": 1,
+      "hidden": true,
+      "message": "calcInches should work for any distance.",
+      "helpTopic": "todo6",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Your calcInches passes the visible test but not this one. Check that it passes its own parameter to calcFeet."
+        }
+      ]
     }
   ]
 }
